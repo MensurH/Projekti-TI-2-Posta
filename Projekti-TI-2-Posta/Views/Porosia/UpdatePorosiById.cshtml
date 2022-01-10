@@ -1,0 +1,120 @@
+﻿@model Projekti_TI_2_Posta.Models.Porosia.UpdatePorosiaModel
+
+@{
+    Layout = null;
+}
+
+<html>
+<head>
+    <link rel="icon" href="https://i.imgur.com/jBR7KVA.png">
+    <link rel="stylesheet" href="~/css/dashboard.css" />
+    <script type="text/javascript" src="~/js/dashboard.js"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+P+One&family=Open+Sans+Condensed:wght@300&family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <section class="page-content">
+
+
+        <div class="container-fluid">
+            @if (User.IsInRole("Admin"))
+            {
+            <form asp-action="UpdatePorosiModel" asp-controller="Porosia" method="post">
+                <input asp-for="ID" hidden />
+                <input asp-for="Emertimi" hidden />
+                <input asp-for="Emri" hidden />
+                <input asp-for="Mbiemri" hidden />
+                <input asp-for="Adresa" hidden />
+                <input asp-for="NrTelefonit" hidden />
+                <input asp-for="Qyteti" hidden />
+                <input asp-for="Shteti" hidden />
+                <input asp-for="ERegjistruar" hidden />
+                <input asp-for="EDerguar" hidden />
+                <input asp-for="UserID" hidden />
+                <input asp-for="InsertData" hidden />
+                <input asp-for="Pagesa" hidden />
+                <div class="book-container">
+                    <div class="hehe">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Regjistro</h4>
+                                </div>
+
+
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label>Zgjedh Postierin</label>
+                                        <select asp-for="PostierID"
+                                                asp-items="ViewBag.Postierat"
+                                                class="custom-select">
+                                        </select>
+                                        <span asp-validation-for="PostierID" class="text-danger"></span>
+                                    </div>
+
+                                    A jeni i sigurt qe deshironi ta regjistroni kete porosi?
+                                </div>
+
+
+                                <div class="modal-footer">
+                                    <div><a class="btn btn-secondary" asp-controller="Porosia" asp-action="GetAllPorosi">Jo</a></div>
+                                    <div><button type="submit" class="btn btn-danger">Po</button></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            }
+            @if (User.IsInRole("Postier"))
+            {
+        <form asp-action="UpdatePorosiModel2" asp-controller="Porosia" method="post">
+            <input asp-for="ID" hidden />
+            <input asp-for="Emertimi" hidden />
+            <input asp-for="Emri" hidden />
+            <input asp-for="Mbiemri" hidden />
+            <input asp-for="Adresa" hidden />
+            <input asp-for="NrTelefonit" hidden />
+            <input asp-for="Qyteti" hidden />
+            <input asp-for="Shteti" hidden />
+            <input asp-for="ERegjistruar" hidden />
+            <input asp-for="EDerguar" hidden />
+            <input asp-for="PostierID" hidden />
+            <input asp-for="UserID" hidden />
+            <input asp-for="InsertData" hidden />
+            <input asp-for="Pagesa" hidden />
+            <div class="book-container">
+                <div class="hehe">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Dergo</h4>
+                            </div>
+
+                            <div class="modal-body">
+                                A jeni i sigurt qe deshironi ta kryeni kete veprim?
+                            </div>
+
+                            <div class="modal-footer">
+                                <div><a class="btn btn-secondary" asp-controller="Porosia" asp-action="GetAllPorosi">Jo</a></div>
+                                <div><button type="submit" class="btn btn-danger">Po</button></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+            }
+        </div>
+    </section>
+</body>
+</html>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
